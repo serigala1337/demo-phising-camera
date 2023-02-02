@@ -69,4 +69,4 @@ $link = "https://google.com";
         }
 	</script>
 </body>
-</html
+</html>
